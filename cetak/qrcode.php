@@ -11,7 +11,7 @@ include(_MPDF_PATH . "mpdf.php");
 
 //include(_MPDF_PATH . "graph_cache/src/");
 
-$mpdf=new mPDF('utf-8', 'A4-L', 10.5, 'arial'); // Membuat file mpdf baru
+$mpdf=new mPDF('utf-8', array(190,165), '', '', '0','0','0','0'); // Membuat file mpdf baru
  
 //Beginning Buffer to save PHP variables and HTML tags
 ob_start(); 
@@ -73,7 +73,7 @@ include_once "../config/inc.connection.php";
 include_once "../config/inc.library.php";	
 
 $dataKode		= $_GET['id'];
-$dataJumlah		= 4;
+$dataJumlah		= 6;
 
 $KodeEdit		= isset($_GET['id']) ?  $_GET['id'] : $_POST['txtKode']; 
 $sqlShow 		= "SELECT * FROM ms_barang
@@ -93,12 +93,13 @@ for($a=1; $a<=$dataJumlah; $a++)
 {
 echo '<table width="100%">
 			<tr>
-				<td align="center" style="padding-top:40px">'.$dataQRCode,'</td>
-				<td align="center" style="padding-top:40px">'.$dataQRCode,'</td>
-				<td align="center" style="padding-top:40px">'.$dataQRCode,'</td>
-				<td align="center" style="padding-top:40px">'.$dataQRCode,'</td>
-				<td align="center" style="padding-top:40px">'.$dataQRCode,'</td>
-				<td align="center" style="padding-top:40px">'.$dataQRCode,'</td>
+				<td align="center" style="padding:20px">'.$dataQRCode,'</td>
+				<td align="center" style="padding:20px">'.$dataQRCode,'</td>
+				<td align="center" style="padding:20px">'.$dataQRCode,'</td>
+				<td align="center" style="padding:20px">'.$dataQRCode,'</td>
+				<td align="center" style="padding:20px">'.$dataQRCode,'</td>
+				<td align="center" style="padding:20px">'.$dataQRCode,'</td>
+                <td align="center" style="padding:20px">'.$dataQRCode,'</td>
 			</tr>
 			
 		</table>';

@@ -11,7 +11,7 @@ include(_MPDF_PATH . "mpdf.php");
 
 //include(_MPDF_PATH . "graph_cache/src/");
 
-$mpdf=new mPDF('utf-8', 'A4-L', 10.5, 'arial'); // Membuat file mpdf baru
+$mpdf=new mPDF('utf-8', array(216,279), '', '', '5','5','65','50'); // Create new mPDF Document
  
 //Beginning Buffer to save PHP variables and HTML tags
 ob_start(); 

@@ -4,6 +4,7 @@
         $txtQty             = $_POST['txtQty'][$key];
         $txtDisc            = $_POST['txtDisc'][$key];
         $txtIDBarang        = $_POST['txtIDBarang'][$key];
+        $txtHarga        	= $_POST['txtHarga'][$key];
 
       
 			$stokSql	= "SELECT * FROM ms_barang WHERE id_barang='$txtIDBarang'";
@@ -13,6 +14,7 @@
 				echo '<script>alert("Jumlah barang '.$stokRow['nama_barang'].' yang anda masukkan melebihi stok tersedia, sisa stok '.$stokRow['stok_barang'].'")</script>';
 			}else{
 				mysqli_query($koneksidb, "UPDATE tr_penjualan_tmp SET jumlah_penjualan='$txtQty',
+																harga_penjualan='$txtHarga',
         														diskon_penjualan='$txtDisc'
                                                             WHERE id='$txtID'") 
             	or die ("Gagal kosongkan tmp".mysqli_error());
@@ -46,8 +48,10 @@
             $txtID              = (int) $_POST['id'][$key];
             $txtQty             = $_POST['txtQty'][$key];
             $txtDisc            = $_POST['txtDisc'][$key];
+        	$txtHarga        	= $_POST['txtHarga'][$key];
 
             mysqli_query($koneksidb, "UPDATE tr_penjualan_tmp SET jumlah_penjualan='$txtQty',
+            														harga_penjualan='$txtHarga',
             														diskon_penjualan='$txtDisc'
                                                                 WHERE id='$txtID'") 
                 or die ("Gagal kosongkan tmp".mysqli_error());
@@ -66,8 +70,10 @@
             $txtID              = (int) $_POST['id'][$key];
             $txtQty             = $_POST['txtQty'][$key];
             $txtDisc            = $_POST['txtDisc'][$key];
+        	$txtHarga        	= $_POST['txtHarga'][$key];
 
             mysqli_query($koneksidb, "UPDATE tr_penjualan_tmp SET jumlah_penjualan='$txtQty',
+            														harga_penjualan='$txtHarga',
             														diskon_penjualan='$txtDisc'
                                                                 WHERE id='$txtID'") 
                 or die ("Gagal kosongkan tmp".mysqli_error());
@@ -96,8 +102,10 @@
             $txtID              = (int) $_POST['id'][$key];
             $txtQty             = $_POST['txtQty'][$key];
             $txtDisc            = $_POST['txtDisc'][$key];
+        	$txtHarga        	= $_POST['txtHarga'][$key];
 
             mysqli_query($koneksidb, "UPDATE tr_penjualan_tmp SET jumlah_penjualan='$txtQty',
+            														harga_penjualan='$txtHarga',
             														diskon_penjualan='$txtDisc'
                                                                 WHERE id='$txtID'") 
                 or die ("Gagal kosongkan tmp".mysqli_error());
@@ -159,10 +167,12 @@
 		foreach ($_POST['id'] as $key=>$val) {
             $txtID              = (int) $_POST['id'][$key];
             $txtQty             = $_POST['txtQty'][$key];
+        	$txtHarga        	= $_POST['txtHarga'][$key];
 
 
 
-            mysqli_query($koneksidb, "UPDATE tr_penjualan_tmp SET jumlah_penjualan='$txtQty'
+            mysqli_query($koneksidb, "UPDATE tr_penjualan_tmp SET jumlah_penjualan='$txtQty',     
+            														harga_penjualan='$txtHarga'
                                                                 WHERE id='$txtID'") 
                 or die ("Gagal kosongkan tmp".mysqli_error());
         }
@@ -373,7 +383,7 @@ function submitform() {
 										<td><div align="center"><?php echo $nomor; ?></div></td>
 										<td><?php echo $tmpRow['kode_barcode']; ?></td>
 										<td><?php echo $tmpRow['nama_barang']; ?></td>
-										<td><div align="right"><input type="text" class="form-control input-sm" value="<?php echo number_format($tmpRow['harga_penjualan']) ?>" readonly></div></td>
+										<td><div align="right"><input type="text" class="form-control input-sm" onChange="javascript:submitform();" value="<?php echo $tmpRow['harga_penjualan'] ?>" name="txtHarga[]"></div></td>
 										<td><div align="center"><input class="form-control input-sm" type="number" onChange="javascript:submitform();" name="txtDisc[]" value="<?php echo ($tmpRow['diskon_penjualan']); ?>"/></div></td>
 										<td><div align="center"><input class="form-control input-sm" type="number" onChange="javascript:submitform();" name="txtQty[]" value="<?php echo $tmpRow['jumlah_penjualan']; ?>"/></div></td>
 										<td><input type="text" class="form-control input-sm" name="txtSubtotal" value="<?php echo number_format($subSotal) ?>" readonly></td>
