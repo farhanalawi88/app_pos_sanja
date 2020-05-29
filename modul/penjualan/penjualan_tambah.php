@@ -117,7 +117,8 @@
 			$barangRow 		= mysqli_fetch_assoc($barangQry);
 			if ($barangRow['total'] >= 1) {
 
-				$itmSql 		="SELECT *, COUNT(*) as total FROM tr_penjualan_tmp WHERE id_barang='$barangRow[id_barang]'";
+				$itmSql 		="SELECT *, COUNT(*) as total FROM tr_penjualan_tmp WHERE id_barang='$barangRow[id_barang]' 
+																						AND id_user='".$_SESSION['id_user']."'";
 				$itmQry 		= mysqli_query($koneksidb, $itmSql) or die ("Gagal Query Tmp".mysqli_error());
 				$itmRow 		= mysqli_fetch_assoc($itmQry);
 
@@ -199,7 +200,7 @@
 			$stokQry	= mysqli_query($koneksidb, $stokSql);
 			$stokRow 	= mysqli_fetch_array($stokQry);
 			if($tmpRow['jumlah_penjualan']>$stokRow['stok_barang']){
-				$message[] = "Jumlah barang <b>$stokRow[nama_barang]</b> yang anda masukkan melebihi stok tersedia, sisa stok <b>$stokRow[stok_barang]</b>";
+				$message[] = "Jumlah barang <b>".$stokRow['nama_barang']."</b> yang anda masukkan melebihi stok tersedia, sisa stok <b>".$stokRow['stok_barang']."</b>";
 			}
 		}
 
